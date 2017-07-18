@@ -64,7 +64,8 @@ module.exports = function debugTrace(options) {
 
 console.traceFormat = function (call, method) {
   var options = {};
-  call.filename = call.getFileName().replace(console.traceOptions.cwd, '');
+  var fileName = call.getFileName();
+  call.filename = (fileName || '<unknown file>').replace(console.traceOptions.cwd, '');
   call.method = method;
   call.functionName = call.getFunctionName() || 'anonymous'
   call.getDate = function getDate() {
